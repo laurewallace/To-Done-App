@@ -7,10 +7,10 @@
         <g id="Tasks" transform="translate(-1302.000000, -25.000000)">
             <g id="Button/Primary/With-Icon/Default" transform="translate(1290.000000, 16.000000)">
                 <g id="Icon/Upload" transform="translate(12.000000, 9.000000)">
-                    <mask id="mask-2" fill="white">
+                    <mask id="mask-2" fill="#34AA44">
                         <use xlink:href="#path-1"/>
                     </mask>
-                    <use id="Add" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"/>
+                    <use id="Add" fill="white" fill-rule="nonzero" xlink:href="#path-1"/>
                 </g>
             </g>
         </g>
