@@ -8,6 +8,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #eaedf3;
+  height: 70px;
   h1 {
       font-size: 20px;
   }
@@ -21,11 +22,9 @@ const LogoContainer = styled.div`
   img {
     margin-right: 18px;
   }
-`;
-const AddTask = styled.div`
-  margin-right: 25px;
-`;
+`
 const AddTaskButton = styled.button`
+    margin-right: 25px;
     cursor: pointer;
     width: 120px;
     display: flex;
@@ -37,15 +36,16 @@ const AddTaskButton = styled.button`
     border: none;
     font-size: 14px;
     transition: .5s
-    :hover {
-        background-color: #2f993d;
+    height: 38px;
+    .add-task-btn:hover {
+        background-color: #2f993d !important;
     }
     :active {
         background-color: #2a8836;
         border: none;
     }
-    img {
-        margin-right: 10px;
+    p {
+        margin: 10px;
     }
 `;
 
@@ -58,12 +58,10 @@ function Header(props) {
         <h2>To Done</h2>
       </LogoContainer>
       <h1>{pageType !== "tasks" ? pageType : ""}</h1>
-      <AddTask>
-        <AddTaskButton onClick={() => setPageType("Add Task")}>
+        <AddTaskButton className='add-task-btn' onClick={() => setPageType("Add Task")}>
           <img src={add} alt="add sign with circle around it" />
           <p>Add Task</p>
         </AddTaskButton>
-      </AddTask>
     </HeaderContainer>
   );
 }
