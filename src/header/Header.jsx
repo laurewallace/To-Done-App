@@ -37,8 +37,8 @@ const AddTaskButton = styled.button`
     font-size: 14px;
     transition: .5s
     height: 38px;
-    .add-task-btn:hover {
-        background-color: #2f993d !important;
+    &:hover {
+        background-color: #2f993d;
     }
     :active {
         background-color: #2a8836;
