@@ -13,14 +13,14 @@ const TaskContainer = styled.div`
 
 const TaskPage = (props) => {
   let { tasks, pageType, setPageType } = props;
-  let taskDetail = pageType !== 'tasks' && pageType !== 'form'
+  let taskDetail = pageType !== 'tasks' && pageType !== 'Add Task'
   return (
     <TaskContainer>
       {pageType === 'tasks' && tasks.map((task, idx) => (
         <TaskCard task={task} setPageType={setPageType} key={idx}>hello</TaskCard>
       ))}
       {taskDetail && <div>hello</div>}
-      {pageType === 'form' && <div>form</div>}
+      {pageType === 'Add Task' && <div>form</div>}
     </TaskContainer>
   );
 };
