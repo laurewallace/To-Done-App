@@ -1,3 +1,11 @@
 .App {
   font-family: 'Roboto', sans-serif;
 }
+
+h2 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 14px;
+}

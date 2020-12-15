@@ -16,9 +16,6 @@ const HeaderContainer = styled.div`
 const LogoContainer = styled.div`
   margin-left: 25px;
   display: flex;
-  h2 {
-    font-size: 16px;
-  }
   img {
     margin-right: 18px;
   }

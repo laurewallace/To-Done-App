@@ -5,17 +5,22 @@ import TaskCard from './TaskCard'
 
 const TaskContainer = styled.div`
     display: flex;
-    
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #FBFBFD;
+    padding-top: 30px;
 `
 
 const TaskPage = (props) => {
-  let { tasks, setTasks } = props;
-  console.log(tasks)
+  let { tasks, pageType, setPageType } = props;
+  let taskDetail = pageType !== 'tasks' && pageType !== 'form'
   return (
     <TaskContainer>
-      {tasks.map((task, idx) => (
-        <TaskCard task={task} key={idx}>hello</TaskCard>
+      {pageType === 'tasks' && tasks.map((task, idx) => (
+        <TaskCard task={task} setPageType={setPageType} key={idx}>hello</TaskCard>
       ))}
+      {taskDetail && <div>hello</div>}
+      {pageType === 'form' && <div>form</div>}
     </TaskContainer>
   );
 };
