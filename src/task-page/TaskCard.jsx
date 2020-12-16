@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import calendar from "../logos/calendar.svg";
+import check from '../logos/check.svg'
 
 const CardContainer = styled.div`
-    position: relative;
+  position: relative;
   max-width: 335px;
   margin: 15px;
   min-width: 250px;
@@ -12,6 +13,9 @@ const CardContainer = styled.div`
   border-radius: 5px;
   background-color: #FFFFFF;
   cursor: pointer;
+  :active {
+    border: 2px solid black       
+  } 
   .date, .description {
       margin: 5px 0;
       line-height: 22px;
@@ -20,9 +24,15 @@ const CardContainer = styled.div`
       color: #9EA0A5;
       margin-bottom: 30px;
   }
+  
 `;
+const Completed = styled.img`
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+`
 const Thumbnail = styled.div`
-  width: 335px;
+  width: 335px; 
   height: 90px;
   background-image: url(${props => props.image});
   background-position: center;
@@ -31,13 +41,15 @@ const Thumbnail = styled.div`
 `;
 const Tags = styled.div`
   margin-top: 10px;
-  button {
+  .tag {
     text-transform: uppercase;
     color: white;
     border-radius: 5px;
     border: none;
-    padding: 3px 10px;
-    font-family: 'Roboto', sans-serif;
+    padding: 4px 8px;
+    margin: 0 8px 0 0;
+    font-size: 12px;
+    display: inline-block;
   }
   .work {
     background-color: #6758f3;
@@ -65,22 +77,27 @@ const DateDisplay = styled.div`
 `
 
 const TaskCard = (props) => {
-  let { task, setPageType } = props;
+  let { task, setPageType, setCardSelected } = props;
+  const goToDetails = () => {
+    setPageType(task.title)
+    setCardSelected(task)
+  }
   return (
-    <CardContainer onClick={() => setPageType(task.title)} tabindex="0">
+    <CardContainer onClick={() => goToDetails()} tabindex="0">
+      {task.completed && <Completed src={check} alt=""/>}
       <Thumbnail image={task.thumbnail} />
       <Tags>
         {task.labels.map((label, idx) => (
-          <button className={label} key={idx}>
+          <p className={label + ' tag'} key={idx}>
             {label}
-          </button>
+          </p>
         ))}
       </Tags>
       <h2>{task.title}</h2>
       <p class='description'>{task.description}</p>
       <DateDisplay>
         <img src={calendar} alt="" />
-        <p class='date'>{task.date}</p>
+        <p className='date'>{task.date}</p>
       </DateDisplay>
     </CardContainer>
   );

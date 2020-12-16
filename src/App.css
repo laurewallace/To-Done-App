@@ -1,5 +1,7 @@
 .App {
   font-family: 'Roboto', sans-serif;
+  background-color: #FBFBFD;
+  height: 100vh;
 }
 
 h2 {

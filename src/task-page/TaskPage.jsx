@@ -7,17 +7,16 @@ const TaskContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: #FBFBFD;
     padding-top: 30px;
 `
 
 const TaskPage = (props) => {
-  let { tasks, pageType, setPageType } = props;
+  let { tasks, pageType, setPageType, cardSelected, setCardSelected } = props;
   let taskDetail = pageType !== 'tasks' && pageType !== 'Add Task'
   return (
     <TaskContainer>
       {pageType === 'tasks' && tasks.map((task, idx) => (
-        <TaskCard task={task} setPageType={setPageType} key={idx}>hello</TaskCard>
+        <TaskCard task={task} setPageType={setPageType} key={idx} setCardSelected={setCardSelected}>hello</TaskCard>
       ))}
       {taskDetail && <div>hello</div>}
       {pageType === 'Add Task' && <div>form</div>}
