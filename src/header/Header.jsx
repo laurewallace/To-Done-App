@@ -8,14 +8,15 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #eaedf3;
+  border-bottom: 1px solid #eaedf3;
   height: 70px;
   background-color: #ffffff;
   h1 {
     font-size: 20px;
     position: absolute;
-    width: 100%;
     text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `;
 const LogoContainer = styled.div`
@@ -75,14 +76,19 @@ const FormButton = styled.button`
 `;
 
 function Header(props) {
-  let { pageType, setPageType, tasks, setTasks, cardSelected } = props;
+  let { pageType, setPageType, tasks, setTasks, cardSelected, edit, setEdit } = props;
   let taskDetail = pageType !== "tasks" && pageType !== "Add Task";
+  let index = tasks.indexOf(cardSelected);
   const markAsComplete = () => {
+    setPageType("tasks");
+    tasks[index].completed = true;
+    setTasks([...tasks]);
+  };
+  const deleteTask = () => {
+    let copyOfTasks = [...tasks]
+    copyOfTasks.splice(index, 1)
+    setTasks(copyOfTasks)
     setPageType('tasks')
-    let index = tasks.indexOf(cardSelected)
-    tasks[index].completed = true
-    setTasks([...tasks])
-    console.log(tasks)
   }
   return (
     <HeaderContainer>
@@ -113,14 +119,6 @@ function Header(props) {
           </FormButton>
           <FormButton
             color={"#FFFFFF"}
-            backgroundColor={"#E73C1E"}
-            hoverColor={"#d0361b"}
-            activeColor={"#b93018"}
-          >
-            Delete
-          </FormButton>
-          <FormButton
-            color={"#FFFFFF"}
             backgroundColor={"#34aa44"}
             hoverColor={"#2f993d"}
             activeColor={"#2a8836"}
@@ -129,18 +127,68 @@ function Header(props) {
           </FormButton>
         </ButtonContainer>
       )}
-      {taskDetail && (
-        <FormButton
-          onClick={() => markAsComplete()}
-          color={"#FFFFFF"}
-          backgroundColor={"#34aa44"}
-          hoverColor={"#2f993d"}
-          activeColor={"#2a8836"}
-          width={"154px"}
-        >
-          Mark as Complete
-        </FormButton>
-      )}
+      {taskDetail &&
+        (edit ? (
+          <ButtonContainer>
+            <FormButton
+              color={"#FFFFFF"}
+              backgroundColor={"#34aa44"}
+              hoverColor={"#2f993d"}
+              activeColor={"#2a8836"}
+            >
+              Save
+            </FormButton>
+            <FormButton
+              onClick={() => setEdit(false)}
+              backgroundColor={"#FFFFFF"}
+              border={"#EAEDF3"}
+              hoverColor={"#e6e6e6"}
+              activeColor={"#cccccc"}
+            >
+              Cancel
+            </FormButton>
+          </ButtonContainer>
+        ) : (
+          <ButtonContainer>
+            <FormButton
+              onClick={() => setEdit(true)}
+              backgroundColor={"#FFFFFF"}
+              border={"#EAEDF3"}
+              hoverColor={"#e6e6e6"}
+              activeColor={"#cccccc"}
+            >
+              Edit
+            </FormButton>
+            <FormButton
+              onClick={() => markAsComplete()}
+              color={"#FFFFFF"}
+              backgroundColor={"#34aa44"}
+              hoverColor={"#2f993d"}
+              activeColor={"#2a8836"}
+              width={"154px"}
+            >
+              Mark as Complete
+            </FormButton>
+            <FormButton
+              onClick={() => deleteTask()}
+              color={"#FFFFFF"}
+              backgroundColor={"#E73C1E"}
+              hoverColor={"#d0361b"}
+              activeColor={"#b93018"}
+            >
+              Delete
+            </FormButton>
+            <FormButton
+              onClick={() => setPageType("tasks")}
+              backgroundColor={"#FFFFFF"}
+              border={"#EAEDF3"}
+              hoverColor={"#e6e6e6"}
+              activeColor={"#cccccc"}
+            >
+              Back
+            </FormButton>
+          </ButtonContainer>
+        ))}
     </HeaderContainer>
   );
 }

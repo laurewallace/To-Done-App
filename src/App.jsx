@@ -6,6 +6,7 @@ import TaskPage from "./task-page/TaskPage";
 function App() {
   const [pageType, setPageType] = useState("tasks");
   const [cardSelected, setCardSelected] = useState("");
+  const [edit, setEdit] = useState(false);
   const [tasks, setTasks] = useState([
     {
       title: "First",
@@ -15,6 +16,7 @@ function App() {
         "first thing, so cool. lets do it. this is a really really cool thing and we need to do it immediately",
       labels: ["work"],
       date: "12/20/20",
+      notes: 'here are some cool notes',
       completed: false,
     },
     {
@@ -24,6 +26,7 @@ function App() {
       description: "second thing, so cool. lets do it",
       labels: ["personal"],
       date: "12/20/20",
+      notes: 'here are some cool notes',
       completed: false,
     },
     {
@@ -33,12 +36,13 @@ function App() {
       description: "second thing, so cool. lets do it",
       labels: ["family", "important"],
       date: "12/20/20",
+      notes: 'here are some cool notes',
       completed: false,
     },
   ]);
   return (
     <div className="App">
-      <Header pageType={pageType} setPageType={setPageType} tasks={tasks} setTasks={setTasks} cardSelected={cardSelected} />
+      <Header pageType={pageType} setPageType={setPageType} tasks={tasks} setTasks={setTasks} cardSelected={cardSelected} edit={edit} setEdit={setEdit} />
       <TaskPage
         tasks={tasks}
         setTasks={setTasks}
@@ -46,6 +50,7 @@ function App() {
         pageType={pageType}
         setCardSelected={setCardSelected}
         cardSelected={cardSelected}
+        edit={edit}
       />
     </div>
   );

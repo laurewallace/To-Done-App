@@ -2,6 +2,7 @@ import React from "react";
 import styled from 'styled-components'
 
 import TaskCard from './TaskCard'
+import TaskDetail from './TaskDetail'
 
 const TaskContainer = styled.div`
     display: flex;
@@ -11,14 +12,14 @@ const TaskContainer = styled.div`
 `
 
 const TaskPage = (props) => {
-  let { tasks, pageType, setPageType, cardSelected, setCardSelected } = props;
+  let { tasks, pageType, setPageType, cardSelected, setCardSelected, edit, setEdit } = props;
   let taskDetail = pageType !== 'tasks' && pageType !== 'Add Task'
   return (
     <TaskContainer>
       {pageType === 'tasks' && tasks.map((task, idx) => (
-        <TaskCard task={task} setPageType={setPageType} key={idx} setCardSelected={setCardSelected}>hello</TaskCard>
+        <TaskCard task={task} setPageType={setPageType} key={idx} setCardSelected={setCardSelected} />
       ))}
-      {taskDetail && <div>hello</div>}
+      {taskDetail && <TaskDetail cardSelected={cardSelected} edit={edit} setEdit={setEdit} />}
       {pageType === 'Add Task' && <div>form</div>}
     </TaskContainer>
   );

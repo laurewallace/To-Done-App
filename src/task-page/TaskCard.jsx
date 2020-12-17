@@ -9,12 +9,12 @@ const CardContainer = styled.div`
   margin: 15px;
   min-width: 250px;
   padding: 15px;
-  border: 2px solid #eaedf3;
+  border: 1px solid #eaedf3;
   border-radius: 5px;
   background-color: #FFFFFF;
   cursor: pointer;
   :active {
-    border: 2px solid black       
+    border: 2px solid black;       
   } 
   .date, .description {
       margin: 5px 0;
@@ -78,13 +78,14 @@ const DateDisplay = styled.div`
 
 const TaskCard = (props) => {
   let { task, setPageType, setCardSelected } = props;
+  console.log(task)
   const goToDetails = () => {
     setPageType(task.title)
     setCardSelected(task)
   }
   return (
     <CardContainer onClick={() => goToDetails()} tabindex="0">
-      {task.completed && <Completed src={check} alt=""/>}
+      {task && task.completed && <Completed src={check} alt=""/>}
       <Thumbnail image={task.thumbnail} />
       <Tags>
         {task.labels.map((label, idx) => (
