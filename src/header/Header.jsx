@@ -76,7 +76,7 @@ const FormButton = styled.button`
 `;
 
 function Header(props) {
-  let { pageType, setPageType, tasks, setTasks, cardSelected, edit, setEdit, addedTask } = props;
+  let { pageType, setPageType, tasks, setTasks, cardSelected, edit, setEdit, addedTask, setAddedTask } = props;
   let taskDetail = pageType !== "tasks" && pageType !== "Add Task";
   let index = tasks.indexOf(cardSelected);
   const markAsComplete = () => {
@@ -92,6 +92,9 @@ function Header(props) {
   }
   const saveNewTask = () => {
     tasks.push(addedTask)
+    setTasks(tasks)
+    setPageType('tasks')
+    setAddedTask({title: '', thumbnail: '', description: '', labels: [], date: '', notes: ''})
   }
   return (
     <HeaderContainer>
@@ -154,7 +157,7 @@ function Header(props) {
           </ButtonContainer>
         ) : (
           <ButtonContainer>
-            <FormButton
+            {/* <FormButton
               onClick={() => setEdit(true)}
               backgroundColor={"#FFFFFF"}
               border={"#EAEDF3"}
@@ -162,7 +165,7 @@ function Header(props) {
               activeColor={"#cccccc"}
             >
               Edit
-            </FormButton>
+            </FormButton> */}
             <FormButton
               onClick={() => markAsComplete()}
               color={"#FFFFFF"}

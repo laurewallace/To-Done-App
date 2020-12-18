@@ -8,42 +8,10 @@ function App() {
   const [cardSelected, setCardSelected] = useState("");
   const [edit, setEdit] = useState(false);
   const [addedTask, setAddedTask] = useState({title: '', thumbnail: '', description: '', labels: [], date: '', notes: ''})
-  const [tasks, setTasks] = useState([
-    {
-      title: "First",
-      thumbnail:
-        "https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg",
-      description:
-        "first thing, so cool. lets do it. this is a really really cool thing and we need to do it immediately",
-      labels: ["work"],
-      date: "12/20/20",
-      notes: 'here are some cool notes',
-      completed: false,
-    },
-    {
-      title: "Second",
-      thumbnail:
-        "https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg",
-      description: "second thing, so cool. lets do it",
-      labels: ["personal"],
-      date: "12/20/20",
-      notes: 'here are some cool notes',
-      completed: false,
-    },
-    {
-      title: "Third",
-      thumbnail:
-        "https://visualsound.com/wp-content/uploads/2019/05/unavailable-image.jpg",
-      description: "second thing, so cool. lets do it",
-      labels: ["family", "important"],
-      date: "12/20/20",
-      notes: 'here are some cool notes',
-      completed: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
   return (
     <div className="App">
-      <Header pageType={pageType} setPageType={setPageType} tasks={tasks} setTasks={setTasks} cardSelected={cardSelected} edit={edit} setEdit={setEdit} addedTask={addedTask} />
+      <Header pageType={pageType} setPageType={setPageType} tasks={tasks} setTasks={setTasks} cardSelected={cardSelected} edit={edit} setEdit={setEdit} addedTask={addedTask} setAddedTask={setAddedTask} />
       <TaskPage
         tasks={tasks}
         setTasks={setTasks}

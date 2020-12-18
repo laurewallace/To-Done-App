@@ -17,6 +17,7 @@ const TaskPage = (props) => {
   let taskDetail = pageType !== 'tasks' && pageType !== 'Add Task'
   return (
     <TaskContainer>
+      {!tasks.length && pageType === 'tasks' && <div>No Tasks Added Yet</div>}
       {pageType === 'tasks' && tasks.map((task, idx) => (
         <TaskCard task={task} setPageType={setPageType} key={idx} setCardSelected={setCardSelected} />
       ))}
