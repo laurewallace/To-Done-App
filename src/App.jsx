@@ -7,6 +7,7 @@ function App() {
   const [pageType, setPageType] = useState("tasks");
   const [cardSelected, setCardSelected] = useState("");
   const [edit, setEdit] = useState(false);
+  const [addedTask, setAddedTask] = useState({title: '', thumbnail: '', description: '', labels: [], date: '', notes: ''})
   const [tasks, setTasks] = useState([
     {
       title: "First",
@@ -42,7 +43,7 @@ function App() {
   ]);
   return (
     <div className="App">
-      <Header pageType={pageType} setPageType={setPageType} tasks={tasks} setTasks={setTasks} cardSelected={cardSelected} edit={edit} setEdit={setEdit} />
+      <Header pageType={pageType} setPageType={setPageType} tasks={tasks} setTasks={setTasks} cardSelected={cardSelected} edit={edit} setEdit={setEdit} addedTask={addedTask} />
       <TaskPage
         tasks={tasks}
         setTasks={setTasks}
@@ -51,6 +52,8 @@ function App() {
         setCardSelected={setCardSelected}
         cardSelected={cardSelected}
         edit={edit}
+        addedTask={addedTask}
+        setAddedTask={setAddedTask}
       />
     </div>
   );
